@@ -40,11 +40,15 @@ if __name__ == "__main__":
 
     model = build_model_8()
     model.compile(loss = 'mse', optimizer = 'adam', metrics = ['mae'])
+
+    checkpoint = ModelCheckpoint("weights/points32.h5", monitor='val_mae', verbose=1, save_best_only=True,
+                                  save_weights_only=False, mode='max')
+
+    callbacks_list = [checkpoint]
+
     history = model.fit_generator(generator = train_generator, validation_data = valid_generator,
-     use_multiprocessing=True,# workers = 6, 
-     epochs = 50)#, steps_per_epoch = 50,
-     #validation_steps = 25)
-    model.save_weights('weights/points31.h5')
+     use_multiprocessing=True, callbacks=callbacks_list, epochs = 50, verbose=1)
+
     print(history.history)
     val_mae_history = history.history['val_mae']
     mae_history = history.history['mae']
