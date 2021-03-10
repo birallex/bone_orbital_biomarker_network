@@ -6,6 +6,8 @@ from models import build_model_8
 from generator import my_DataGenerator
 from generator import create_dict_from_folder
 
+from keras.callbacks import ModelCheckpoint
+
 def plot_mae(history):
     plt.plot(range(1, len(history) + 1), history)
     plt.xlabel('Epochs')
