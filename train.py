@@ -44,7 +44,7 @@ if __name__ == "__main__":
     model.compile(loss = 'mse', optimizer = 'adam', metrics = ['mae'])
 
     checkpoint = ModelCheckpoint("weights/points32.h5", monitor='val_loss', verbose=1, save_best_only=True,
-                                  save_weights_only=False, mode='max')
+                                  save_weights_only=False, mode='min')
 
     callbacks_list = [checkpoint]
 
