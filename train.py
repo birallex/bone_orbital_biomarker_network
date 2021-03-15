@@ -49,7 +49,7 @@ if __name__ == "__main__":
     callbacks_list = [checkpoint]
 
     history = model.fit_generator(generator = train_generator, validation_data = valid_generator,
-     use_multiprocessing=True, callbacks=callbacks_list, epochs = 50, verbose=1)
+     use_multiprocessing=False, callbacks=callbacks_list, epochs = 50, verbose=1)
 
     print(history.history)
     val_mae_history = history.history['val_mae']
